@@ -3,15 +3,15 @@
   left: 0;
   right: 0;
   height: 90%;
-  // bottom: -95%;
-  bottom: 0;
-  background-color: aquamarine;
-  transition: bottom  .2s ease-in;
-  transition-delay: .1s;
+  bottom: -95%;
+  // bottom: 0;
+  background-color: #fff;
+  transition: bottom .2s ease;
   z-index: 100000;
+
 }
 
 .mood-create-container.show {
   bottom: 0;
-  // transform: scaleX(1.1);
+  transform: scaleX(1.1);
 }
