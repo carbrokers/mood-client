@@ -1,0 +1,10 @@
+.mood-container {
+  position: relative;
+  height: 100vh;
+  transition: transform .1s ease-in;
+}
+
+.mood-container.scale {
+  // border: 2rpx solid #ccc;
+  // transform: scaleX(0.9);
+}

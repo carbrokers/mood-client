@@ -1,0 +1,133 @@
+$width: 100rpx;
+
+.foot-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80rpx;
+  // background: linear-gradient(90deg,#00897b, #4db6ac);;
+  background: rgb(27, 173, 126);
+  color: #fff;
+
+  .menu {
+    height: 100%;
+    .menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .create-mood {
+    position: fixed;
+    width: $width;
+    height: $width;
+    box-sizing: border-box;
+    left: 50%;
+    bottom: 20rpx;
+    transform: translateX(-50%);
+    background-color: #00bfa5;
+    color: #00bfa5;
+    border-radius: 50%;
+    z-index: 100000;
+  }
+
+  .start,
+  .action-log,
+  .action-mood,
+  .action-fuck{
+    position: absolute;
+    border-radius: 50%;
+    z-index: 100;
+  }
+
+  .start {
+    width: $width;
+    height: $width;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    transform: rotateZ(0);
+    text-align: center;
+    transition: transform .1s;
+    z-index: 100;
+  }
+
+  .action-log,
+  .action-mood,
+  .action-fuck {
+    box-sizing: border-box;
+    opacity: 0;
+    width: 0.8 * $width;
+    height: 0.8 * $width;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    transition: top 0.1s ease, opacity 0.1s ease, left 0.1s ease;
+  }
+
+  .action-mood {
+    background: url('./images/heart.svg') no-repeat center;
+    background-size: 70%;
+  }
+
+  .action-log {
+    background: url('./images/note.svg') no-repeat center;
+    background-size: 70%;
+  }
+
+  .action-fuck {
+    background: url('./images/Email.svg') no-repeat center;
+    background-size: 60%;
+  }
+
+  .action-text {
+    position: absolute;
+    font-size: 20rpx;
+    color: #fff;
+    bottom: -40rpx;
+    left: 20rpx;
+  }
+}
+
+.create-mood.show {
+  .start {
+    transform: rotateZ(90deg);;
+  }
+
+  .action-mood {
+    top: -220rpx;
+    opacity: 1;
+    background-color: #ff80ab;
+  }
+  
+  .action-log {
+    top: -110rpx;
+    left: -150px;
+    opacity: 1;
+    background-color: #673ab7;
+  }
+
+  .action-fuck {
+    top: -110rpx;
+    left: 160rpx;
+    opacity: 1;
+    background-color: #00b0ff;
+  }
+}
+
+.modal-view {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(3, 16, 26);
+  z-index: 10000;
+  opacity: 0.5;
+  transition: opacity 0.1s;
+}
