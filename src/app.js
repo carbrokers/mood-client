@@ -5,16 +5,16 @@ import './app.scss'
 class App extends Component {
 
   async onLaunch() {
-    let token = wx.getStorageSync('token');
-    if (token) {
-      return;
-    }
-    const { code } = await wx.login();
-    const result = await request('/token', {
-      code,
-      type: 200
-    }, 'post');
-    wx.setStorageSync('token', result.token);
+    // let token = wx.getStorageSync('token');
+    // if (token) {
+    //   return;
+    // }
+    // const { code } = await wx.login();
+    // const result = await request('/token', {
+    //   code,
+    //   type: 200
+    // }, 'post');
+    // wx.setStorageSync('token', result.token);
   }
 
   componentDidMount () {}

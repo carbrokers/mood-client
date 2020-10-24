@@ -2,16 +2,48 @@
   position: fixed;
   left: 0;
   right: 0;
-  height: 90%;
-  bottom: -95%;
-  // bottom: 0;
+  height: 450rpx;
+  bottom: -165%;
   background-color: #fff;
-  transition: bottom .2s ease;
   z-index: 100000;
-
+  transition: bottom 0.2s;
+  box-shadow: 0 0.3125rem 1.25rem 0 rgba(0,0,0,.298039);
 }
+
+.mood-panel {
+  position: relative;
+}
+
+.mood-canvas {
+  width: 750rpx;
+  height: 400rpx;
+}
+
+._pointer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  transform: rotate(-90deg);
+  width: 750rpx;
+  height: 750rpx;
+}
+
+._pointer::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12rpx 22rpx;
+  border-color: transparent transparent #333 transparent;
+  top: 0;
+  left: 50%;
+  margin-left: -22rpx;
+}
+
 
 .mood-create-container.show {
   bottom: 0;
-  transform: scaleX(1.1);
+  // transform: scaleX(1);
 }

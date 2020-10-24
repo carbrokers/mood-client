@@ -11,9 +11,17 @@ const defOpt = {
 };
 
 const animation = Taro.createAnimation({
-  delay: 200,
+  delay: 0,
   timingFunction: 'ease'
 });
+
+var containerAnimation = Taro.createAnimation({
+  timingFunction: 'ease',
+  duration: 200
+});
+
+const device = wx.getSystemInfoSync();
+
 export default class MoodsPopup extends Component {
 
   constructor(props) {
@@ -38,18 +46,15 @@ export default class MoodsPopup extends Component {
     this.state = {
       animationData: {}
     }
+    this.emit = props.show;
   }
 
   componentDidMount() {
     this.ctx = Taro.createCanvasContext('dash-board');
-    this.drawDashBoard();
-    setTimeout(() => {
-      this.drawPage(50)
-    }, 1000);
+    // this.drawDashBoard();
   }
 
   drawDashBoard() {
-    const device = wx.getSystemInfoSync();
     const halfWidth = parseInt(Math.min(this.data.width, 750) / 750 * device.windowWidth / 2, 10);
     const lineLength = parseInt(this.data.width / 750 * device.windowWidth / 20, 10);
     this.ctx.lineWidth = Math.round(this.data.width / 750) + 1;
@@ -74,13 +79,9 @@ export default class MoodsPopup extends Component {
 
   drawPage(val) {
     const percent = parseInt((val - this.data.min) / (this.data.max - this.data.min) * 100, 10);
-
     const deg = 180 * (percent / 100) - 90;
     animation.rotate(deg).step();
-    console.log(animation.export())
-
     this.setState({
-      currentColor: this.getCurrentColor(percent),
       animationData: animation.export()
     });
   }
@@ -98,19 +99,36 @@ export default class MoodsPopup extends Component {
     return result;
   }
 
+  getPos = (e) => {
+    const { pageX, pageY } = e.touches[0];
+    const width = pageX - device.windowWidth / 2;
+    const height = device.windowHeight - pageY;
+    const deg = (1 - Math.atan2(height, width) / Math.PI) * 100;
+    // console.log(deg);
+    this.drawPage(deg)
+  }
+
   render() {
     const { show } = this.props;
+    const { animationData } = this.state;
+    const top = (this.data.height - this.data.width / 750 * 400) / 2;
+    const now = Date.now();
+    if (this.emit === false && show) {
+      setTimeout(() => {
+        this.drawDashBoard()
+      }, 400);
+    }
     return (
       <View className={classnames('mood-create-container', { show })}>
-        <View className="_pointer"
-          animation={this.state.animationData}
-        >
-
+        <View className="mood-panel" onTouchMove={this.getPos}>
+          <Canvas className="mood-canvas" style={`width: ${this.data.width}rpx;height: ${this.data.height}rpx; top: ${top}rpx`} canvasId='dash-board' className="dashboard"></Canvas>
+          <View className="_pointer"
+            animation={animationData}
+            style={`width: ${this.data.width}rpx; height: ${this.data.width}rpx; top: ${top}rpx`}
+          >
+          </View>
         </View>
-        <Canvas style='width: 100%; height: 400px;' canvasId='dash-board' className="dashboard"></Canvas>
       </View>
     );
   }
 }
-
-// style="width:{{width}}rpx;height:{{width}}rpx;top:{{(height - width / 750 * 400) / 2}}rpx"

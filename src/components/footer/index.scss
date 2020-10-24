@@ -1,11 +1,11 @@
-$width: 100rpx;
+$width: 120rpx;
 
 .foot-container {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80rpx;
+  height: 120rpx;
   // background: linear-gradient(90deg,#00897b, #4db6ac);;
   background: rgb(27, 173, 126);
   color: #fff;
@@ -25,7 +25,7 @@ $width: 100rpx;
     height: $width;
     box-sizing: border-box;
     left: 50%;
-    bottom: 20rpx;
+    bottom: 60rpx;
     transform: translateX(-50%);
     background-color: #00bfa5;
     color: #00bfa5;
@@ -90,7 +90,7 @@ $width: 100rpx;
     font-size: 20rpx;
     color: #fff;
     bottom: -40rpx;
-    left: 20rpx;
+    left: 28rpx;
   }
 }
 
